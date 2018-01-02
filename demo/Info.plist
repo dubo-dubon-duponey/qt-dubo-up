@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!-- Confable -->
+    <key>CFBundleExecutable</key>
+    <string>dubomegaup</string>
+    <key>CFBundleIconFile</key>
+    <string>main</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.dubo.megaup</string>
+    <!-- APPL for apps, FMWK for frameworks -->
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>DUBO</string>
+
+    <key>CFBundleName</key>
+    <string>DuboMegaUp</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.7</string>
+
+    <!-- Sparkle -->
+    <key>SUPublicDSAKeyFile</key>
+    <string>dsa_pub.pem</string>
+    <key>SUFeedURL</key>
+    <string>https://domain/dubomegaup/appcast.xml</string>
+    <key>SUEnableAutomaticChecks</key>
+    <string>YES</string>
+    <key>SUAllowsAutomaticUpdates</key>
+    <string>NO</string>
+    <key>SUEnableSystemProfiling</key>
+    <string>YES</string>
+
+    <!-- XXX not setting this gets super shitty rendering :s -->
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+  </dict>
+</plist>
