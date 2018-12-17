@@ -8,4 +8,4 @@ OTHER_FILES +=  res/redist/AUTHORS \
                 mac.pri \
                 win.pri \
                 other.pri \
-                README
+                README.md

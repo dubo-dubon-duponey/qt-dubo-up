@@ -1,6 +1,4 @@
-================
-DuboMegaUp
-================
+# MegaUp
 
 Ready-to-use, thin, QT wrapper around Sparkle and WinSparkle primarily meant to be used in Dubo products.
 Will build Sparkle binary, and does bundle WinSparkle binary.
@@ -12,14 +10,10 @@ Check the "demo" for some crude informations. You likely need to be familiar wit
 
 Licensed under BSD2.
 
-================
-NOTES
-================
+## NOTES
 
 If you don't use the provided third-party libraries, you will have to handle runtime link issues yourself.
 
-================
-TODO
-================
+## TODO
 
 Doxygen documentation effort.

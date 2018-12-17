@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey@gmail.com>
+ * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -12,9 +12,9 @@
 #ifndef DUBOMEGAUP_MEGAUP_H
 #define DUBOMEGAUP_MEGAUP_H
 
-#include "libdubomegaup/libdubomegaup_global.h"
+#include "libdubomegaup/global.h"
 
-#include <QtCore/qobject.h>
+#include <QObject>
 
 namespace DuboMegaUp{
 
@@ -22,7 +22,7 @@ class LIBDUBOMEGAUPSHARED_EXPORT MegaUp : public QObject
 {
     Q_OBJECT
     public:
-        MegaUp(QObject * parent = 0, const QString& aUrl = NULL, const QString& companyName = NULL, const QString& appName = NULL, const QString& version = NULL);
+        MegaUp(QObject * parent = nullptr, const QString& aUrl = NULL, const QString& companyName = NULL, const QString& appName = NULL, const QString& version = NULL);
         ~MegaUp();
 
         Q_INVOKABLE void checkNow(const bool silent = true);
