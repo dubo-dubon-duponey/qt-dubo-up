@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-  <dict>
-    <!-- Confable -->
-    <key>CFBundleExecutable</key>
-    <string>dubomegaup</string>
-    <key>CFBundleIconFile</key>
-    <string>main</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.dubo.megaup</string>
-    <!-- APPL for apps, FMWK for frameworks -->
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleSignature</key>
-    <string>DUBO</string>
+    <dict>
+        <key>CFBundleExecutable</key>
+        <string>@EXECUTABLE@</string>
+        <key>CFBundleShortVersionString</key>
+        <string>@SHORT_VERSION@</string>
+        <key>CFBundleVersion</key>
+        <string>@FULL_VERSION@</string>
+        <key>CFBundleIconFile</key>
+        <string>@ICON@</string>
+        <key>CFBundleIdentifier</key>
+        <string>@BUNDLEIDENTIFIER@</string>
+        <key>LSMinimumSystemVersion</key>
+        <string>${MACOSX_DEPLOYMENT_TARGET}</string>
 
-    <key>CFBundleName</key>
-    <string>DuboMegaUp</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>CFBundleVersion</key>
-    <string>1.0.0</string>
+        <key>CFBundleName</key>
+        <string>DuboPlayer Demo</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleSignature</key>
+        <string>DUBO</string>
+        <key>CFBundleGetInfoString</key>
+        <string>Created by Dubo, Dubon, et du Poney</string>
+        <key>NSPrincipalClass</key>
+        <string>NSApplication</string>
+        <key>NSSupportsAutomaticGraphicsSwitching</key>
+        <true/>
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.reference</string>
+        <key>NSHumanReadableCopyright</key>
+        <string>Copyright © 2019 Dubo. All rights reserved.</string>
+        <key>CFBundleDevelopmentRegion</key>
+        <string>en</string>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
 
-    <key>CFBundleDevelopmentRegion</key>
-    <string>en</string>
-    <key>CFBundleInfoDictionaryVersion</key>
-    <string>6.0</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>10.7</string>
-
-    <!-- Sparkle -->
-    <key>SUPublicDSAKeyFile</key>
-    <string>dsa_pub.pem</string>
-    <key>SUFeedURL</key>
-    <string>https://domain/dubomegaup/appcast.xml</string>
-    <key>SUEnableAutomaticChecks</key>
-    <string>YES</string>
-    <key>SUAllowsAutomaticUpdates</key>
-    <string>NO</string>
-    <key>SUEnableSystemProfiling</key>
-    <string>YES</string>
-
-    <!-- XXX not setting this gets super shitty rendering :s -->
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-
-  </dict>
+        <!-- Sparkle -->
+        <key>SUPublicDSAKeyFile</key>
+        <string>dsa_pub.pem</string>
+        <key>SUFeedURL</key>
+        <string>https://domain/duboup/appcast.xml</string>
+        <key>SUEnableAutomaticChecks</key>
+        <string>YES</string>
+        <key>SUAllowsAutomaticUpdates</key>
+        <string>NO</string>
+        <key>SUEnableSystemProfiling</key>
+        <string>YES</string>
+    </dict>
 </plist>

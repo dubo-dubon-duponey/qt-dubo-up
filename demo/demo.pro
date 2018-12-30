@@ -1,5 +1,5 @@
 TEMPLATE = app
-QT = core widgets
+QT = core widgets webengine webenginewidgets webchannel
 
 PROJECT_ROOT = $$PWD/..
 include($$PROJECT_ROOT/config/qmakeitup.pri)
@@ -8,7 +8,28 @@ INCLUDEPATH += $$PWD
 
 LIBS += -l$${DUBO_LINK_NAME}
 
-SOURCES +=  $$PWD/main.cpp
+contains(DUBO_LINK_TYPE, static){
+    DEFINES += LIBDUBOUP_USE_STATIC
+}
+
+SOURCES += $$PWD/main.cpp
+RESOURCES += $$PWD/demo.qrc
+
+mac{
+    # Add plist, and a nice icon
+    OTHER_FILES += $$PWD/Info.plist \
+        $$PWD/demo.icns
+
+    QMAKE_INFO_PLIST = $${PWD}/Info.plist
+    ICON = $${PWD}/demo.icns
+}
+
+
+
+
+
+
+
 
 mac{
     system(rm -Rf $${DESTDIR}/$${TARGET}.app/Contents/Frameworks/Sparkle.framework)
@@ -19,15 +40,9 @@ mac{
     warning("Copying over template plist and bogus DSA key. For distribution, you MUST tweak the plist to fit your needs and place your proper DSA pub key inside Resources.")
     # XXX force rpath here to make it work (for 5.7), and make it work from ../Frameworks for 5.10
     QMAKE_LFLAGS += -Wl,-rpath,@executable_path/../Frameworks
-
-    # Add plist with Sparkle properties
-    OTHER_FILES += $$PWD/Info.plist
-    QMAKE_INFO_PLIST = $${PWD}/Info.plist
 }
 
 contains(DUBO_LINK_TYPE, static){
-    DEFINES += LIBDUBOMEGAUP_USE_STATIC
-
     mac{
         # Link against the embedded copy
         QMAKE_LFLAGS += -F$${DESTDIR}/$${TARGET}.app/Contents/Frameworks

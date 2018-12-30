@@ -6,9 +6,9 @@ include($$PROJECT_ROOT/config/qmakeitup.pri)
 
 INCLUDEPATH += $$PWD
 
-DEFINES += LIBDUBOMEGAUP_LIBRARY
+DEFINES += LIBDUUP_LIBRARY
 contains(DUBO_LINK_TYPE, static){
-    DEFINES += LIBDUBOMEGAUP_USE_STATIC
+    DEFINES += LIBDUBOUP_USE_STATIC
 }
 
 copyToDestdir($$PWD/lib$${TARGET}/*.h, $$DESTDIR/../include/lib$${TARGET})
@@ -18,20 +18,20 @@ SOURCES +=  $$PWD/root.cpp
 
 HEADERS +=  $$PWD/lib$${TARGET}/global.h \
             $$PWD/lib$${TARGET}/root.h \
-            $$PWD/lib$${TARGET}/megaup.h
+            $$PWD/lib$${TARGET}/up.h
 
 mac {
     HEADERS +=              $$PWD/mac/cocoainit.h
     OBJECTIVE_SOURCES +=    $$PWD/mac/cocoainit.mm
-    OBJECTIVE_SOURCES +=    $$PWD/mac/megaup.mm
+    OBJECTIVE_SOURCES +=    $$PWD/mac/up.mm
 }
 
 win32 {
-    SOURCES += $$PWD/win/megaup.cpp
+    SOURCES += $$PWD/win/up.cpp
 }
 
 !mac:!win32{
-    SOURCES += $$PWD/nux/megaup.cpp
+    SOURCES += $$PWD/nux/up.cpp
 }
 
 # Copy over the framework to the build destination so that apps can embed the framework from a consistent place

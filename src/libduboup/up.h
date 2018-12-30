@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
+ * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -9,17 +9,36 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef DUBOMEGAUP_GLOBAL_H
-#define DUBOMEGAUP_GLOBAL_H
+#ifndef DUBOUP_UP_H
+#define DUBOUP_UP_H
 
-#include <QtGlobal>
+#include "libduboup/global.h"
 
-#if defined(LIBDUBOMEGAUP_USE_STATIC)
-#  define LIBDUBOMEGAUPSHARED_EXPORT
-#elif defined(LIBDUBOMEGAUP_LIBRARY)
-#  define LIBDUBOMEGAUPSHARED_EXPORT Q_DECL_EXPORT
-#else
-#  define LIBDUBOMEGAUPSHARED_EXPORT Q_DECL_IMPORT
-#endif
+#include <QObject>
 
-#endif // DUBOMEGAUP_GLOBAL_H
+namespace DuboUp{
+
+class LIBDUBOUPSHARED_EXPORT Up : public QObject
+{
+    Q_OBJECT
+    public:
+        Up(QObject * parent = nullptr, const QString& aUrl = NULL, const QString& companyName = NULL, const QString& appName = NULL, const QString& version = NULL);
+        ~Up();
+
+        Q_INVOKABLE void checkNow(const bool silent = true);
+
+        Q_PROPERTY(const bool automatic READ getAutomatic WRITE setAutomatic)
+        Q_PROPERTY(const int interval READ getAutomaticInterval WRITE setAutomaticInterval)
+
+        void setAutomatic(const bool val);
+        bool getAutomatic();
+        void setAutomaticInterval(const int seconds);
+        int getAutomaticInterval();
+
+    private:
+        class Private;
+        Private* d;
+};
+
+}
+#endif // DUBOUP_UP_H

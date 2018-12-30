@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
+ * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -11,8 +11,8 @@
 
 #include <QtCore/qdebug.h>
 #include <QApplication>
-#include <libdubomegaup/megaup.h>
-#include <libdubomegaup/root.h>
+#include <libduboup/up.h>
+#include <libduboup/root.h>
 #include <QWidget>
 
 int main(int argc, char *argv[])
@@ -20,9 +20,9 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QObject * r = new QObject;
-    QString u = QString::fromLatin1("https://qtdubomegaup/appcast.xml");
-    DuboMegaUp::Root * updaterRoot = new DuboMegaUp::Root();
-    DuboMegaUp::MegaUp * updater = new DuboMegaUp::MegaUp(r, u, "", updaterRoot->getName(), updaterRoot->getVersion());
+    QString u = QString::fromLatin1("https://qtduboup/appcast.xml");
+    DuboUp::Root * updaterRoot = new DuboUp::Root();
+    DuboUp::Up * updater = new DuboUp::Up(r, u, "", updaterRoot->getName(), updaterRoot->getVersion());
     // updaterRoot->getVendor()
     updater->setAutomatic(true);
     updater->setAutomaticInterval(3600 * 24);

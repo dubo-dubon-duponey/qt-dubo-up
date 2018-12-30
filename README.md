@@ -1,4 +1,4 @@
-# MegaUp
+# DuboUp
 
 Ready-to-use, thin, QT wrapper around Sparkle and WinSparkle primarily meant to be used in Dubo products.
 Will build Sparkle binary, and does bundle WinSparkle binary.

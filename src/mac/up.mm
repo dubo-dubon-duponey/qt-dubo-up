@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
+ * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -9,7 +9,7 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "libdubomegaup/megaup.h"
+#include "libduboup/up.h"
 #include "cocoainit.h"
 
 #include <Cocoa/Cocoa.h>
@@ -17,19 +17,19 @@
 
 #include <QtCore/qdebug.h>
 
-namespace DuboMegaUp{
+namespace DuboUp{
 
-class MegaUp::Private
+class Up::Private
 {
 	public:
 		SUUpdater* updater;
 //        CocoaInitializer * cinit;
 };
 
-MegaUp::MegaUp(QObject * parent, const QString& aUrl, const QString& /*companyName*/, const QString& /*appName*/, const QString& /*version*/):
+Up::Up(QObject * parent, const QString& aUrl, const QString& /*companyName*/, const QString& /*appName*/, const QString& /*version*/):
     QObject(parent)
 {
-    qDebug() << "     +++ [Lib] {MegaUp}: constructor:" << aUrl;
+    qDebug() << "     +++ [Lib] {DuboUp}: constructor:" << aUrl;
 
     CocoaInitializer initializer;
     d = new Private;
@@ -56,18 +56,18 @@ MegaUp::MegaUp(QObject * parent, const QString& aUrl, const QString& /*companyNa
     qDebug() << "     +++                 done";
 }
 
-MegaUp::~MegaUp()
+Up::~Up()
 {
-    qDebug() << "     --- [Lib] {MegaUp}: destructor";
+    qDebug() << "     --- [Lib] {DuboUp}: destructor";
     [d->updater release];
 //    d->cinit->~CocoaInitializer();
 	delete d;
     qDebug() << "     ---                 done";
 }
 
-void MegaUp::checkNow(const bool silent)
+void Up::checkNow(const bool silent)
 {
-    qDebug() << "     *** [Lib] {MegaUp}: check for updates";
+    qDebug() << "     *** [Lib] {DuboUp}: check for updates";
     if(silent)
         [d->updater checkForUpdatesInBackground];
     else
@@ -76,28 +76,28 @@ void MegaUp::checkNow(const bool silent)
 }
 
 
-void MegaUp::setAutomatic(const bool val)
+void Up::setAutomatic(const bool val)
 {
     CocoaInitializer initializer;
-    qDebug() << "     *** [Lib] {MegaUp}: set automatic update checking";
+    qDebug() << "     *** [Lib] {DuboUp}: set automatic update checking";
     [d->updater setAutomaticallyChecksForUpdates: val];
     qDebug() << "     ***                 done";
 }
 
-bool MegaUp::getAutomatic()
+bool Up::getAutomatic()
 {
     return [d->updater automaticallyChecksForUpdates];
 }
 
-void MegaUp::setAutomaticInterval(const int seconds)
+void Up::setAutomaticInterval(const int seconds)
 {
     CocoaInitializer initializer;
-    qDebug() << "     *** [Lib] {MegaUp}: set automatic update time interval";
+    qDebug() << "     *** [Lib] {DuboUp}: set automatic update time interval";
     [d->updater setUpdateCheckInterval: seconds];
     qDebug() << "     ***                 done";
 }
 
-int MegaUp::getAutomaticInterval()
+int Up::getAutomaticInterval()
 {
     return [d->updater updateCheckInterval];
 }
