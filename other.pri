@@ -2,10 +2,6 @@
 # Any of the following may be overriden by the environment
 ###############
 
-# Wether to build static or shared library
-#DUBO_LINK_TYPE = static
-DUBO_LINK_TYPE = dynamic
-
 # You can choose to link against the third-party provided libraries.
 # If so, this should be not null and point to a specific version and subpath
 DUBO_INTERNAL_VERSION = default

@@ -2,3 +2,4 @@ Makefile*
 .DS_Store
 buildd/
 *.pro.user
+/.qmake.stash
