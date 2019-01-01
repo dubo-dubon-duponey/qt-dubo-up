@@ -1,8 +1,23 @@
 #!/bin/sh
 
-TP_VERSION=$1
+revision="$1"
+os="$2"
+arch="$3"
+
+mac_deployment_target="$4"
+
 
 download(){
+    local version=$1
+    if [ ! -d "Sparkle.$version" ]; then
+        git clone --recursive git@github.com:sparkle-project/Sparkle.git "Sparkle.$version"
+        cd "Sparkle.$version"
+        git checkout "$version"
+        cd -
+    fi
+}
+
+download_release(){
     local version=$1
     if [ ! -f $version.tar.gz ]; then
         echo "Downloading Sparkle $version"
@@ -24,11 +39,13 @@ download(){
 }
 
 build(){
-    local source=$1/Sparkle-$1
-    local dest=$1.build
+    local source=Sparkle.$1
+    local dest=Sparkle.$1.build
+    local target="$2"
+    local arch="$3"
     if [ ! -d $dest ]; then
         cd "$source"
-        xcodebuild -project Sparkle.xcodeproj -sdk macosx$(xcrun --show-sdk-version) MACOSX_DEPLOYMENT_TARGET=10.7 -target Sparkle -configuration Release GCC_TREAT_WARNINGS_AS_ERRORS=NO ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES
+        xcodebuild -project Sparkle.xcodeproj -sdk macosx$(xcrun --show-sdk-version) MACOSX_DEPLOYMENT_TARGET="$target" -target Sparkle -configuration Release GCC_TREAT_WARNINGS_AS_ERRORS=NO ARCHS="$arch" ONLY_ACTIVE_ARCH=YES
         #
         if [[ $? != 0 ]]; then
             echo "Failed to build!"
@@ -40,8 +57,8 @@ build(){
     fi
 }
 
-download $TP_VERSION
-build $TP_VERSION
+download "$revision"
+build "$revision" "$mac_deployment_target" "$arch"
 
 
 exit

@@ -19,7 +19,3 @@ Licensed under BSD2.
 ## NOTES
 
 If you don't use the provided third-party libraries, you will have to handle runtime link issues yourself.
-
-## TODO
-
-Doxygen documentation effort.

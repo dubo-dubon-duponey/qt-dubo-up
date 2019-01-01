@@ -75,7 +75,7 @@ const QString Root::getLibVersion(){
 const QString Root::getLibRevision(){
 #if defined(Q_OS_MAC)
     // XXX should better read the info.plist
-    return QString::fromLatin1("5b6");
+    return QString::fromLatin1("1.21.2");
 #elif defined(Q_OS_WIN)
     return QString::number(WIN_SPARKLE_VERSION_MINOR);
 #else

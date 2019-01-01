@@ -22,13 +22,13 @@ class LIBDUBOUPSHARED_EXPORT Up : public QObject
 {
     Q_OBJECT
     public:
-        Up(QObject * parent = nullptr, const QString& aUrl = NULL, const QString& companyName = NULL, const QString& appName = NULL, const QString& version = NULL);
+        Up(QObject * parent = nullptr, const QString& aUrl = nullptr, const QString& companyName = nullptr, const QString& appName = nullptr, const QString& version = nullptr);
         ~Up();
 
         Q_INVOKABLE void checkNow(const bool silent = true);
 
-        Q_PROPERTY(const bool automatic READ getAutomatic WRITE setAutomatic)
-        Q_PROPERTY(const int interval READ getAutomaticInterval WRITE setAutomaticInterval)
+        Q_PROPERTY(const bool automatic READ getAutomatic WRITE setAutomatic NOTIFY automaticChanged)
+        Q_PROPERTY(const int interval READ getAutomaticInterval WRITE setAutomaticInterval NOTIFY intervalChanged)
 
         void setAutomatic(const bool val);
         bool getAutomatic();
@@ -38,6 +38,10 @@ class LIBDUBOUPSHARED_EXPORT Up : public QObject
     private:
         class Private;
         Private* d;
+
+    signals:
+        void automaticChanged();
+        void intervalChanged();
 };
 
 }

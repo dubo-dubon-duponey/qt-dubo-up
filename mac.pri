@@ -4,8 +4,12 @@
 
 # You can choose to link against the third-party provided libraries.
 # If so, this should be not null and point to a specific version and subpath
-DUBO_INTERNAL_VERSION = 1.18.1
-DUBO_INTERNAL_PATH = $${DUBO_INTERNAL_VERSION}.build
+# DUBO_INTERNAL_VERSION = 1.18.1
+
+# 1.21.2
+DUBO_INTERNAL_VERSION = a5b23cdbee4c6455bae3f3a7f47fda39d967878b
+
+DUBO_INTERNAL_PATH = Sparkle.$${DUBO_INTERNAL_VERSION}.build
 
 # If you rather want to link against your own, specify DUBO_EXTERNAL, a directory that must contain include and lib folders with the necessary dependencies
 # Note this will be used BEFORE any other manually specified source

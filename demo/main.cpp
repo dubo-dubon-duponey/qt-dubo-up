@@ -15,24 +15,69 @@
 #include <libduboup/root.h>
 #include <QWidget>
 
+#include <QtWebEngine>
+#include <QWebEngineView>
+#include <QWebEnginePage>
+#include <QFileInfo>
+#include <QDir>
+#include <QWebChannel>
+
+QWebChannel * SetupWebView()
+{
+    QFileInfo jsFileInfo(QDir::currentPath() + "/qwebchannel.js");
+
+    if (!jsFileInfo.exists())
+        QFile::copy(":/qtwebchannel/qwebchannel.js", jsFileInfo.absoluteFilePath());
+
+    QtWebEngine::initialize();
+    QWebEngineView * view = new QWebEngineView();
+
+    QWebChannel * channel = new QWebChannel(view->page());
+    view->page()->setWebChannel(channel);
+
+    view->load(QUrl("qrc:/demo.html"));
+    view->show();
+
+    return channel;
+}
+
+void OutputLibraryInfo(){
+    DuboUp::Root * root = new DuboUp::Root();
+    qDebug() << root->property("NAME");
+    qDebug() << root->property("VENDOR");
+    qDebug() << root->property("VERSION");
+    qDebug() << root->property("REVISION");
+    qDebug() << root->property("CHANGESET");
+    qDebug() << root->property("BUILD");
+    qDebug() << root->property("LINK");
+    qDebug() << root->property("QT");
+    qDebug() << root->property("PLUGIN_NAME");
+    qDebug() << root->property("PLUGIN_VERSION");
+    qDebug() << root->property("PLUGIN_REVISION");
+}
+
 int main(int argc, char *argv[])
 {
+    // Get your app going
     QApplication app(argc, argv);
+
+    // Display the webview
+    QWebChannel * chan = SetupWebView();
 
     QObject * r = new QObject;
     QString u = QString::fromLatin1("https://qtduboup/appcast.xml");
-    DuboUp::Root * updaterRoot = new DuboUp::Root();
-    DuboUp::Up * updater = new DuboUp::Up(r, u, "", updaterRoot->getName(), updaterRoot->getVersion());
+    // Instanciate our main objects
+    DuboUp::Root * root = new DuboUp::Root();
+    DuboUp::Up * updater = new DuboUp::Up(r, u, "", root->getName(), root->getVersion());
+    // Attach objects to the javascript context
+    chan->registerObject("Root", root);
+    chan->registerObject("Dubo", updater);
+
     // updaterRoot->getVendor()
     updater->setAutomatic(true);
     updater->setAutomaticInterval(3600 * 24);
     // Check updates
     updater->checkNow();
 
-    QWidget * t = new QWidget();
-    t->show();
-
-    int a;
-    a = app.exec();
-    return a;
+    return app.exec();
 }

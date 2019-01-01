@@ -99,7 +99,7 @@ void Up::setAutomaticInterval(const int seconds)
 
 int Up::getAutomaticInterval()
 {
-    return [d->updater updateCheckInterval];
+    return static_cast<int>([d->updater updateCheckInterval]);
 }
 
 
