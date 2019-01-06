@@ -13,7 +13,7 @@
 
 #include <winsparkle.h>
 
-#include <QtCore/qdebug.h>
+#include <QDebug>
 
 namespace DuboUp{
 

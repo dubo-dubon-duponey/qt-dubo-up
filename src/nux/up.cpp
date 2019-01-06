@@ -11,7 +11,7 @@
 
 #include "libduboup/up.h"
 
-#include <QtCore/qdebug.h>
+#include <QDebug>
 
 namespace DuboUp{
 

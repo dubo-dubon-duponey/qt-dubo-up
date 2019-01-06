@@ -9,7 +9,7 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <QtCore/qdebug.h>
+#include <QDebug>
 #include <QApplication>
 #include <libduboup/up.h>
 #include <libduboup/root.h>
@@ -68,12 +68,11 @@ int main(int argc, char *argv[])
     QString u = QString::fromLatin1("https://qtduboup/appcast.xml");
     // Instanciate our main objects
     DuboUp::Root * root = new DuboUp::Root();
-    DuboUp::Up * updater = new DuboUp::Up(r, u, "", root->getName(), root->getVersion());
+    DuboUp::Up * updater = new DuboUp::Up(r, u, root->getVendor(), root->getName(), root->getVersion());
     // Attach objects to the javascript context
     chan->registerObject("Root", root);
     chan->registerObject("Dubo", updater);
 
-    // updaterRoot->getVendor()
     updater->setAutomatic(true);
     updater->setAutomaticInterval(3600 * 24);
     // Check updates

@@ -11,7 +11,7 @@
 
 #include <AppKit/AppKit.h>
 #include "cocoainit.h"
-#include <QtCore/qdebug.h>
+#include <QDebug>
 
 class CocoaInitializer::Private
 {

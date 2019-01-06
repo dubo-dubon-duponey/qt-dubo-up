@@ -15,7 +15,7 @@
 #include <Cocoa/Cocoa.h>
 #include <Sparkle.h>
 
-#include <QtCore/qdebug.h>
+#include <QDebug>
 
 namespace DuboUp{
 
