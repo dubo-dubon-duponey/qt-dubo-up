@@ -1,3 +1,5 @@
+CONFIG += c++14
+
 TEMPLATE = lib
 QT = core
 
