@@ -6,24 +6,16 @@ include($$PROJECT_ROOT/config/qmakeitup.pri)
 
 INCLUDEPATH += $$PWD
 
-DEFINES += LIBDUUP_LIBRARY
-contains(DUBO_LINK_TYPE, static){
-    DEFINES += LIBDUBOUP_USE_STATIC
-}
-
-copyToDestdir($$PWD/lib$${TARGET}/*.h, $$DESTDIR/../include/lib$${TARGET})
-copyToDestdir($$PWD/../res/redist/*, $$DESTDIR/../share/lib$${TARGET})
-
-SOURCES +=  $$PWD/root.cpp
-
 HEADERS +=  $$PWD/lib$${TARGET}/global.h \
             $$PWD/lib$${TARGET}/root.h \
             $$PWD/lib$${TARGET}/up.h
 
+SOURCES +=  $$PWD/root.cpp
+
 mac {
     HEADERS +=              $$PWD/mac/cocoainit.h
-    OBJECTIVE_SOURCES +=    $$PWD/mac/cocoainit.mm
-    OBJECTIVE_SOURCES +=    $$PWD/mac/up.mm
+    OBJECTIVE_SOURCES +=    $$PWD/mac/cocoainit.mm \
+                            $$PWD/mac/up.mm
 }
 
 win32 {
@@ -38,7 +30,7 @@ win32 {
 mac{
     system(rm -Rf $${DESTDIR}/../Frameworks/Sparkle.framework)
     system(mkdir -p $${DESTDIR}/../Frameworks)
-    system(cp -R $${DUBO_EXTERNAL}/Frameworks/Sparkle.framework $${DESTDIR}/../Frameworks)
+    QMAKE_PRE_LINK += $$quote(cp -rf $${DUBO_EXTERNAL}/Frameworks/Sparkle.framework $${DESTDIR}/../Frameworks/)
 }
 
 contains(DUBO_LINK_TYPE, dynamic){

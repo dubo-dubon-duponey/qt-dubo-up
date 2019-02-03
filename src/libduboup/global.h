@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *

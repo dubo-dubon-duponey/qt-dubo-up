@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
@@ -11,9 +11,9 @@
 
 #include "libduboup/up.h"
 
-#include <winsparkle.h>
-
 #include <QDebug>
+
+#include <winsparkle.h>
 
 namespace DuboUp{
 
@@ -26,13 +26,11 @@ Up::Up(QObject * parent, const QString& aUrl, const QString& companyName, const 
     }
 
     if(companyName.length()){
-        if(companyName != ""){
-            const wchar_t * cn = companyName.toStdWString().c_str();
-            const wchar_t * an = appName.toStdWString().c_str();
-            const wchar_t * v = version.toStdWString().c_str();
-            qDebug() << "     *** [Lib] {DuboUp}: setting   infos " << (*cn) << (*an) << (*v);
-            win_sparkle_set_app_details(cn, an, v);
-        }
+        const wchar_t * cn = companyName.toStdWString().c_str();
+        const wchar_t * an = appName.toStdWString().c_str();
+        const wchar_t * v = version.toStdWString().c_str();
+        qDebug() << "     *** [Lib] {DuboUp}: setting   infos " << (*cn) << (*an) << (*v);
+        win_sparkle_set_app_details(cn, an, v);
     }
     win_sparkle_init();
 }

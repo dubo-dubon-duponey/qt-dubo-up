@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
@@ -22,7 +22,7 @@ class LIBDUBOUPSHARED_EXPORT Up : public QObject
 {
     Q_OBJECT
     public:
-        Up(QObject * parent = nullptr, const QString& aUrl = nullptr, const QString& companyName = nullptr, const QString& appName = nullptr, const QString& version = nullptr);
+        Up(QObject * parent = nullptr, const QString& aUrl = QString(), const QString& companyName = QString(), const QString& appName = QString(), const QString& version = QString());
         ~Up();
 
         Q_INVOKABLE void checkNow(const bool silent = true);

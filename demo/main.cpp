@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
@@ -11,8 +11,6 @@
 
 #include <QDebug>
 #include <QApplication>
-#include <libduboup/up.h>
-#include <libduboup/root.h>
 #include <QWidget>
 
 #include <QtWebEngine>
@@ -22,12 +20,15 @@
 #include <QDir>
 #include <QWebChannel>
 
+#include <libduboup/up.h>
+#include <libduboup/root.h>
+
 QWebChannel * SetupWebView()
 {
-    QFileInfo jsFileInfo(QDir::currentPath() + "/qwebchannel.js");
+    QFileInfo jsFileInfo(QDir::currentPath() + QString::fromLatin1("/qwebchannel.js"));
 
     if (!jsFileInfo.exists())
-        QFile::copy(":/qtwebchannel/qwebchannel.js", jsFileInfo.absoluteFilePath());
+        QFile::copy(QString::fromLatin1(":/qtwebchannel/qwebchannel.js"), jsFileInfo.absoluteFilePath());
 
     QtWebEngine::initialize();
     QWebEngineView * view = new QWebEngineView();
@@ -35,7 +36,7 @@ QWebChannel * SetupWebView()
     QWebChannel * channel = new QWebChannel(view->page());
     view->page()->setWebChannel(channel);
 
-    view->load(QUrl("qrc:/demo.html"));
+    view->load(QUrl(QString::fromLatin1("qrc:/demo.html")));
     view->show();
 
     return channel;
@@ -70,8 +71,8 @@ int main(int argc, char *argv[])
     DuboUp::Root * root = new DuboUp::Root();
     DuboUp::Up * updater = new DuboUp::Up(r, u, root->getVendor(), root->getName(), root->getVersion());
     // Attach objects to the javascript context
-    chan->registerObject("Root", root);
-    chan->registerObject("Dubo", updater);
+    chan->registerObject(QString::fromLatin1("Root"), root);
+    chan->registerObject(QString::fromLatin1("Dubo"), updater);
 
     updater->setAutomatic(true);
     updater->setAutomaticInterval(3600 * 24);

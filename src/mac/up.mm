@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
@@ -39,8 +39,8 @@ Up::Up(QObject * parent, const QString& aUrl, const QString& /*companyName*/, co
     [d->updater retain];
 
     if(aUrl.length()){
-        NSURL* url = [NSURL URLWithString:
-                [NSString stringWithUTF8String: aUrl.toUtf8().data()]];
+        NSString* s = [NSString stringWithUTF8String: aUrl.toUtf8().data()];
+        NSURL* url = [NSURL URLWithString: s];
         [d->updater setFeedURL: url];
     }
 
@@ -71,7 +71,7 @@ void Up::checkNow(const bool silent)
     if(silent)
         [d->updater checkForUpdatesInBackground];
     else
-        [d->updater checkForUpdates: 0];
+        [d->updater checkForUpdates: nullptr];
     qDebug() << "     ***                 done";
 }
 
