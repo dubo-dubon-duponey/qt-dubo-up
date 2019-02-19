@@ -30,7 +30,9 @@ win32 {
 mac{
     system(rm -Rf $${DESTDIR}/../Frameworks/Sparkle.framework)
     system(mkdir -p $${DESTDIR}/../Frameworks)
-    QMAKE_PRE_LINK += $$quote(cp -rf $${DUBO_EXTERNAL}/Frameworks/Sparkle.framework $${DESTDIR}/../Frameworks/)
+    # XXX PRE does not get called on libraries? XXXXXX
+    # This is still wonky
+    QMAKE_POST_LINK += $$quote(cp -rf $${DUBO_EXTERNAL}/Frameworks/Sparkle.framework $${DESTDIR}/../Frameworks/)
 }
 
 contains(DUBO_LINK_TYPE, dynamic){
