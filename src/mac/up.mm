@@ -15,22 +15,17 @@
 #include <Cocoa/Cocoa.h>
 #include <Sparkle.h>
 
-#include <QDebug>
-
 namespace DuboUp{
 
 class Up::Private
 {
 	public:
 		SUUpdater* updater;
-//        CocoaInitializer * cinit;
 };
 
 Up::Up(QObject * parent, const QString& aUrl, const QString& /*companyName*/, const QString& /*appName*/, const QString& /*version*/):
     QObject(parent)
 {
-    qDebug() << "     +++ [Lib] {DuboUp}: constructor:" << aUrl;
-
     CocoaInitializer initializer;
     d = new Private;
 
@@ -53,35 +48,27 @@ Up::Up(QObject * parent, const QString& aUrl, const QString& /*companyName*/, co
     //- (void)setAutomaticallyDownloadsUpdates:(BOOL)automaticallyDownloadsUpdates;
     //- (BOOL)automaticallyDownloadsUpdates;
     [d->updater setAutomaticallyDownloadsUpdates: true];
-    qDebug() << "     +++                 done";
 }
 
 Up::~Up()
 {
-    qDebug() << "     --- [Lib] {DuboUp}: destructor";
     [d->updater release];
 //    d->cinit->~CocoaInitializer();
 	delete d;
-    qDebug() << "     ---                 done";
 }
 
 void Up::checkNow(const bool silent)
 {
-    qDebug() << "     *** [Lib] {DuboUp}: check for updates";
     if(silent)
         [d->updater checkForUpdatesInBackground];
     else
         [d->updater checkForUpdates: nullptr];
-    qDebug() << "     ***                 done";
 }
-
 
 void Up::setAutomatic(const bool val)
 {
     CocoaInitializer initializer;
-    qDebug() << "     *** [Lib] {DuboUp}: set automatic update checking";
     [d->updater setAutomaticallyChecksForUpdates: val];
-    qDebug() << "     ***                 done";
 }
 
 bool Up::getAutomatic()
@@ -92,15 +79,12 @@ bool Up::getAutomatic()
 void Up::setAutomaticInterval(const int seconds)
 {
     CocoaInitializer initializer;
-    qDebug() << "     *** [Lib] {DuboUp}: set automatic update time interval";
     [d->updater setUpdateCheckInterval: seconds];
-    qDebug() << "     ***                 done";
 }
 
 int Up::getAutomaticInterval()
 {
     return static_cast<int>([d->updater updateCheckInterval]);
 }
-
 
 }

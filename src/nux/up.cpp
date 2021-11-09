@@ -11,24 +11,19 @@
 
 #include "libduboup/up.h"
 
-#include <QDebug>
-
 namespace DuboUp{
 
 Up::Up(QObject * parent, const QString& /*aUrl*/, const QString& /*companyName*/, const QString& /*appName*/, const QString& /*version*/):
     QObject(parent)
 {
-    qDebug() << "     +++ [Lib] {DuboUp}: constructor";
 }
 
 Up::~Up()
 {
-    qDebug() << "     --- [Lib] {DuboUp}: destructor";
 }
 
 void Up::checkNow(const bool /*silent*/)
 {
-    qDebug() << "     *** [Lib] {DuboUp}: check for updates";
 }
 
 void Up::setAutomatic(const bool /*val*/)

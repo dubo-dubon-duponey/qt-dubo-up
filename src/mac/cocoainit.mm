@@ -21,7 +21,6 @@ class CocoaInitializer::Private
 
 CocoaInitializer::CocoaInitializer()
 {
-    qDebug() << "     +++ [Lib] {DuboUp}: cocoa initializer";
     d = new CocoaInitializer::Private();
 	NSApplicationLoad();
 	d->autoReleasePool = [[NSAutoreleasePool alloc] init];
@@ -29,7 +28,6 @@ CocoaInitializer::CocoaInitializer()
 
 CocoaInitializer::~CocoaInitializer()
 {
-    qDebug() << "     +++ [Lib] {DuboUp}: cocoa release";
     [d->autoReleasePool release];
 	delete d;
 }
